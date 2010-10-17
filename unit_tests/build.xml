@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>           
+<project default="help">
+
+
+    <!-- define the ant task -->
+    <taskdef
+        resource="net/sourceforge/ant4hg/taskdefs/antlib.xml" 
+        classpath="../bin/ant4hg-V0.07.jar"
+    />
+        
+    <target name="help">
+    </target>
+
+    <target name="clean">
+        <delete dir="repo"/>
+    </target>
+    
+    <target name="checkout">
+        <mkdir dir="repo"/>
+        <hg cmd="clone" source="https://amino.leonardosketch.googlecode.com/hg/" destination="repo"/>
+    </target>
+    
+    <target name="build">
+        <mkdir dir="build"/>
+        <ant antfile="build.xml" dir="repo" target="build-core"/>
+        <ant antfile="build.xml" dir="repo" target="build-tests"/>
+    </target>
+    
+    <target name="runtests">
+        
+        <property name="classes" value="repo/build/classes"/>        
+        
+        <path id="test.classpath">
+          <pathelement location="${classes}" />
+          <pathelement location="../bin/junit-4.8.2.jar" />
+          <!--
+          <fileset dir="${lib}">
+            <include name="**/*.jar"/>
+          </fileset>-->
+        </path>
+
+        <junit fork="true" dir="repo/test" haltonerror="true">
+            <classpath refid="test.classpath">
+            </classpath>
+           <classpath><fileset dir="repo/lib"><include name="*.jar"/></fileset></classpath>
+            <test name="org.joshy.gfx.css.MainCSSTest"/>
+            <formatter type="plain" usefile="false"/>
+        </junit>
+    </target>
+    
+
+    <target name="all" depends="clean, checkout, build, runtests"/>
+</project>
