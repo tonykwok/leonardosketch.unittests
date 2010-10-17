@@ -16,9 +16,12 @@
     </target>
     
     <target name="checkout">
-        <mkdir dir="repo"/>
-        <hg cmd="clone" source="https://amino.leonardosketch.googlecode.com/hg/" destination="repo"/>
-    </target>
+        <exec executable="hg">
+                <arg value="clone"/>
+                <arg value="https://amino.leonardosketch.googlecode.com/hg/"/>
+                <arg value="repo"/>
+        </exec>
+    </target>    
     
     <target name="build">
         <mkdir dir="build"/>
