@@ -16,7 +16,7 @@
     </target>
     
     <target name="checkout">
-        <mkdir dir="repo"/>
+<!--        <mkdir dir="repo"/>-->
         <hg cmd="clone" source="https://amino.leonardosketch.googlecode.com/hg/" destination="repo"/>
     </target>
     
