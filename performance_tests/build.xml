@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>           
+<project default="help">
+
+
+    <!-- define the ant task -->
+    <taskdef
+        resource="net/sourceforge/ant4hg/taskdefs/antlib.xml" 
+        classpath="../bin/ant4hg-V0.07.jar"
+    />
+        
+    <target name="help">
+    </target>
+
+    <target name="run">
+
+        <ant antfile="run-test.xml" target="all">
+            <property name="repotag" value="r0"/>
+        </ant>
+        
+        <ant antfile="run-test.xml" target="all">
+            <property name="repotag" value="tip"/>
+        </ant>
+    </target>
+</project>
