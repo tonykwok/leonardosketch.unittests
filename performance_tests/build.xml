@@ -9,6 +9,7 @@
     />
         
     <target name="help">
+        <echo>run           run the performance tests on all target versions</echo>
     </target>
 
     <target name="run">
