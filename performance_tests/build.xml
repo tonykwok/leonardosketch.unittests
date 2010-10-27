@@ -2,7 +2,7 @@
 <project default="help">
 
 
-    <!-- define the ant task -->
+    <!-- define the mercurial task -->
     <taskdef
         resource="net/sourceforge/ant4hg/taskdefs/antlib.xml" 
         classpath="../bin/ant4hg-V0.07.jar"

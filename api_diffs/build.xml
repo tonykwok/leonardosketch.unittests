@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>           
+<project default="help">
+
+    <!-- define the mercurial task -->
+    <taskdef
+        resource="net/sourceforge/ant4hg/taskdefs/antlib.xml" 
+        classpath="../bin/ant4hg-V0.07.jar"
+    />
+
+    <target name="help">
+    </target>
+    
+    <target name="run">
+        <javadoc 
+            packagenames="org.joshy.gfx.css.*"
+            sourcepath="../../amino/src"
+            destdir="out"
+            docletpath="../../../javafx-compiler/lib/shared/javafxdoc.jar"
+            doclet="com.sun.tools.xmldoclet.XMLDoclet"
+            classpath="../../amino/lib/parboiled-0.9.7.3.jar"
+        >
+        <!--
+            <arg value="-nohtml"/>
+            -->
+            <arg value="-o"/><arg value="blah/api.xml"/>
+            <!-- josh: strange. value=api.xml crashes, but value=blah/api.xml works?!!! -->
+        </javadoc>
+            <!--
+            javadoc -docletpath javafx-compiler/lib/shared/javafxdoc.jar 
+            -doclet com.sun.tools.xmldoclet.XMLDoclet 
+            -sourcepath personal/Twerp/src -subpackages com.joshondesign.twerp
+            -->
+    </target>
+    
+    <target name="doit">
+        <ant antfile="gen-api.xml" target="all">
+            <property name="repotag" value="r0"/>
+            <property name="output.file" value="out/r0.api.xml"/>
+        </ant>
+        <ant antfile="gen-api.xml" target="all">
+            <property name="repotag" value="tip"/>
+            <property name="output.file" value="out/r1.api.xml"/>
+        </ant>
+    </target>
+    
+</project>

@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>           
+<project default="help">
+
+    <target name="clean">
+        <delete dir="repo"/>
+    </target>
+    
+    <target name="init">
+        <echo message="repo tag = ${repotag}"/>
+        <echo message="output.file = ${output.file}"/>
+    </target>
+    
+    <target name="checkout" depends="init">
+        <exec executable="hg">
+            <arg value="clone"/>
+            <arg value="https://amino.leonardosketch.googlecode.com/hg/"/>            
+            <arg value="repo"/>
+            <arg value="-r"/> <arg value="${repotag}"/>
+        </exec>
+    </target>    
+    
+    <target name="gen-api" depends="init">
+        <echo message="generating api"/>
+        <javadoc 
+            packagenames="org.joshy.gfx.css.*"
+            sourcepath="../../amino/src"
+            destdir="out"
+            docletpath="../../../javafx-compiler/lib/shared/javafxdoc.jar"
+            doclet="com.sun.tools.xmldoclet.XMLDoclet"
+            classpath="../../amino/lib/parboiled-0.9.7.3.jar"
+        >
+
+            <arg value="-nohtml"/>            
+            <arg value="-o"/><arg value="${output.file}"/>
+            <!-- josh: strange. value=api.xml crashes, but value=blah/api.xml works?!!! -->
+        </javadoc>
+        
+    </target>
+    
+    <!--
+    <target name="build-amino">
+        <copy todir="repo" file="rebuild.xml"/>
+        <ant antfile="rebuild.xml" dir="repo" target="build-core"/>
+        <ant antfile="rebuild.xml" dir="repo" target="build-tests"/>
+    </target>
+    
+    <target name="build-tests">
+        <mkdir dir="build"/>
+        <javac srcdir="src" destdir="build">
+           <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
+        </javac>
+    </target>
+    -->
+    
+    <!-- run performance tests -->
+    <!--
+    <target name="run-tests">
+        <java classname="org.joshy.gfx.perftests.Test1">
+           <classpath><pathelement path="build"/></classpath>
+           <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
+        </java>
+        <java classname="org.joshy.gfx.perftests.Test2">
+           <classpath><pathelement path="build"/></classpath>
+           <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
+        </java>
+    </target>
+    
+-->
+    <target name="all" depends="clean, checkout, gen-api">
+    </target>
+
+</project>
