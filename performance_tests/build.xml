@@ -12,7 +12,11 @@
         <echo>run           run the performance tests on all target versions</echo>
     </target>
 
-    <target name="run">
+    <target name="clean">
+        <delete  file="out.txt"/>   
+    </target>
+
+    <target name="run" depends="clean">
 
         <ant antfile="run-test.xml" target="all">
             <property name="repotag" value="r0"/>

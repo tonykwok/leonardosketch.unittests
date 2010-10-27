@@ -1,0 +1,54 @@
+<?xml version="1.0" ?>           
+<project default="help">
+
+    <target name="clean">
+        <delete dir="repo"/>
+    </target>
+    
+    <target name="init">
+        <echo message="repo tag = ${repotag}"/>
+    </target>
+    
+    <target name="checkout" depends="init">
+        <exec executable="hg">
+            <arg value="clone"/>
+            <arg value="https://amino.leonardosketch.googlecode.com/hg/"/>            
+            <arg value="repo"/>
+            <arg value="-r"/> <arg value="${repotag}"/>
+        </exec>
+    </target>    
+    
+    <target name="build-amino">
+        <copy todir="repo" file="rebuild.xml"/>
+        <ant antfile="rebuild.xml" dir="repo" target="build-core"/>
+        <ant antfile="rebuild.xml" dir="repo" target="build-tests"/>
+    </target>
+    
+    <target name="build-tests">
+        <mkdir dir="build"/>
+        <javac srcdir="src" destdir="build">
+           <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
+        </javac>
+    </target>
+    
+    
+    <!-- run performance tests -->
+    <target name="run-tests">
+        <echo file="out.txt" append="true" message="Tests of ${repotag} ${line.separator}"/>
+        <java classname="org.joshy.gfx.perftests.Test1">
+           <classpath><pathelement path="build"/></classpath>
+           <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
+           <arg value="out.txt"/>
+        </java>
+        <java classname="org.joshy.gfx.perftests.Test2">
+           <classpath><pathelement path="build"/></classpath>
+           <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
+           <arg value="out.txt"/>
+        </java>
+    </target>
+    
+
+    <target name="all" depends="clean, checkout, build-amino, build-tests, run-tests">
+    </target>
+
+</project>

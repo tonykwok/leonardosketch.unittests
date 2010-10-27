@@ -11,16 +11,13 @@ import org.joshy.gfx.util.u;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 
-/**
- * Created by IntelliJ IDEA.
- * User: joshmarinacci
- * Date: Oct 25, 2010
- * Time: 11:03:18 PM
- * To change this template use File | Settings | File Templates.
- */
 public class Test2 {
     public static void main(String ... args) throws Exception {
+        PrintWriter out = new PrintWriter(new FileOutputStream(new File(args[0]),true));
         Core.setTesting(true);
         Core.init();
 
@@ -60,9 +57,10 @@ public class Test2 {
         long avg = total / count;
         u.p("average drawing time: " + avg);
 
-        //create gui
-        //invoke top level layout manually
-        //measure before and after
+        out.println(Test2.class.getCanonicalName()
+                +", "+avg
+                +", draw 100 buttons to a buffer");
+        out.close();
     }
 
     private static long time(Callback callback) {
