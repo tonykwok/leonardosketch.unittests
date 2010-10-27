@@ -13,6 +13,14 @@
     </target>
     
     <target name="checkout" depends="init">
+    <echo>executing
+    <![CDATA[
+            <arg value="clone"/>
+            <arg value="https://amino.leonardosketch.googlecode.com/hg/"/>            
+            <arg value="repo"/>
+            <arg value="-r"/> <arg value="${repotag}"/>
+    ]]>
+    </echo>
         <exec executable="hg">
             <arg value="clone"/>
             <arg value="https://amino.leonardosketch.googlecode.com/hg/"/>            
