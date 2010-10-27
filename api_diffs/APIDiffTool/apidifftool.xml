@@ -69,13 +69,13 @@
   </path>
   
   <path id="apidifftool.module.classpath">
-    <pathelement location="/Users/joshmarinacci/projects/personal/leonardosketch-support/XMLLib/dist/XMLLib.jar"/>
+    <pathelement location="/Users/joshmarinacci/projects/personal/leonardosketch-unittests/bin/XMLLib.jar"/>
   </path>
   
   <path id="apidifftool.runtime.module.classpath">
     <pathelement location="${apidifftool.output.dir}"/>
     <pathelement location="${apidifftool.testoutput.dir}"/>
-    <pathelement location="/Users/joshmarinacci/projects/personal/leonardosketch-support/XMLLib/dist/XMLLib.jar"/>
+    <pathelement location="/Users/joshmarinacci/projects/personal/leonardosketch-unittests/bin/XMLLib.jar"/>
   </path>
   
   
