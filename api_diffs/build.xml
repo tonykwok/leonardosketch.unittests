@@ -59,7 +59,7 @@
     <target name="run-tool">
         <java 
             classname="com.joshondesign.apidifftool.Main"
-            classpath="APIDiffTool/out/artifacts/APIDiffTool/APIDiffTool.jar;../../leonardosketch-support/XMLLib/dist/XMLLib.jar"
+            classpath="APIDiffTool/build;../bin/XMLLib.jar"
             dir="APIDiffTool"
             fork="true"
         />

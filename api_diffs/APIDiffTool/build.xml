@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>           
+<project default="help">
+    <target name="all">
+        <mkdir dir="build"/>
+        <javac 
+            classpath="../../bin/XMLLib.jar"
+            srcdir="src"
+            destdir="build"
+        >
+        </javac>
+    </target>
+</project>
