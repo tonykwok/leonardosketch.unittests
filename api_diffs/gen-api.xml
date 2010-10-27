@@ -9,6 +9,7 @@
         <echo message="repo tag = ${repotag}"/>
         <echo message="output.file = ${output.file}"/>
         <property name="javafxdoc.jar" value="../../../javafx-compiler/lib/shared/javafxdoc.jar"/>
+        <echo message="javafxdoc.jar = ${javafxdoc.jar}"/>
     </target>
     
     <target name="checkout" depends="init">
