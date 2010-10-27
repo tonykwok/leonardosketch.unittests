@@ -53,7 +53,7 @@
     </target>
     
     <target name="compile-tool">
-        <ant antfile="APIDiffTool/apidifftool.xml" target="all"/>
+        <ant antfile="build.xml" target="all" dir="APIDiffTool"/>
     </target>
     
     <target name="run-tool">
