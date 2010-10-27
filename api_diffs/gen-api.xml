@@ -8,6 +8,7 @@
     <target name="init">
         <echo message="repo tag = ${repotag}"/>
         <echo message="output.file = ${output.file}"/>
+        <property name="javafxdoc.jar" value="../../../javafx-compiler/lib/shared/javafxdoc.jar"/>
     </target>
     
     <target name="checkout" depends="init">
@@ -21,16 +22,20 @@
     
     <target name="gen-api" depends="init">
         <echo message="generating api"/>
+        
         <javadoc 
-            packagenames="org.joshy.gfx.css.*"
-            sourcepath="repo/src"
             destdir="out"
-            docletpath="../../../javafx-compiler/lib/shared/javafxdoc.jar"
+            docletpath="${javafxdoc.jar}"
             doclet="com.sun.tools.xmldoclet.XMLDoclet"
             classpath="../../amino/lib/parboiled-0.9.7.3.jar"
         >
             <arg value="-nohtml"/>            
             <arg value="-o"/><arg value="${output.file}"/>
+            <packageset dir="repo/src">
+                <include name="org/joshy/gfx/**"/>
+                <exclude name="org/joshy/gfx/test/**"/>
+                <exclude name="org/joshy/gfx/stage/*/**"/>
+            </packageset>
         </javadoc>
         
     </target>

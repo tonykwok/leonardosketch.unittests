@@ -8,6 +8,10 @@
     />
 
     <target name="help">
+        <echo>doit      generate the xml doc for both versions of the source</echo>
+        <echo>diff      generate a diff of the two versions into out.xml</echo>
+        <echo>render    generate an html file from the out.xml</echo>
+        <echo>all  everything</echo>
     </target>
     
     <target name="run">
@@ -32,6 +36,11 @@
             -->
     </target>
     
+    <target name="all" depends="init, doit, compile-tool, run-tool, render"/>
+    
+    <target name="init">
+    </target>
+    
     <target name="doit">
         <ant antfile="gen-api.xml" target="all">
             <property name="repotag" value="r0"/>
@@ -41,6 +50,19 @@
             <property name="repotag" value="tip"/>
             <property name="output.file" value="out/r1.api.xml"/>
         </ant>
+    </target>
+    
+    <target name="compile-tool">
+        <ant antfile="APIDiffTool/apidifftool.xml" target="all"/>
+    </target>
+    
+    <target name="run-tool">
+        <java 
+            classname="com.joshondesign.apidifftool.Main"
+            classpath="APIDiffTool/out/artifacts/APIDiffTool/APIDiffTool.jar;../../leonardosketch-support/XMLLib/dist/XMLLib.jar"
+            dir="APIDiffTool"
+            fork="true"
+        />
     </target>
     
     <target name="render">
