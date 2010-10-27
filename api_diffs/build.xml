@@ -43,4 +43,14 @@
         </ant>
     </target>
     
+    <target name="render">
+        <xslt 
+            style="render.xsl" 
+            destdir="out"
+            in="out/out.xml"
+            out="out/out.html"
+            >
+        </xslt>
+    </target>
+    
 </project>
