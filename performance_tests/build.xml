@@ -23,6 +23,10 @@
         </ant>
         
         <ant antfile="run-test.xml" target="all">
+            <property name="repotag" value="leo_r1b2"/>
+        </ant>
+        
+        <ant antfile="run-test.xml" target="all">
             <property name="repotag" value="tip"/>
         </ant>
     </target>
