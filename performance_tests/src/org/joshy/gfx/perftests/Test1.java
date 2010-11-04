@@ -3,6 +3,8 @@ package org.joshy.gfx.perftests;
 import org.joshy.gfx.Core;
 import org.joshy.gfx.event.Callback;
 import org.joshy.gfx.node.control.Button;
+import org.joshy.gfx.node.control.Control;
+import org.joshy.gfx.node.Node;
 import org.joshy.gfx.node.layout.FlexBox;
 import org.joshy.gfx.node.layout.VFlexBox;
 import org.joshy.gfx.stage.Stage;
@@ -35,6 +37,11 @@ public class Test1 {
         }
 
         box.doSkins();
+        for(Node n : box.children()) {
+            if(n instanceof Control) {
+                ((Control)n).doSkins();
+            }
+        }
         long total = 0;
         int count = 0;
         for(int i=0; i<50; i++) {

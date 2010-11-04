@@ -4,6 +4,8 @@ import org.joshy.gfx.Core;
 import org.joshy.gfx.draw.GFX;
 import org.joshy.gfx.event.Callback;
 import org.joshy.gfx.node.control.Button;
+import org.joshy.gfx.node.control.Control;
+import org.joshy.gfx.node.Node;
 import org.joshy.gfx.node.layout.FlexBox;
 import org.joshy.gfx.node.layout.VFlexBox;
 import org.joshy.gfx.stage.swing.SwingGFX;
@@ -31,6 +33,11 @@ public class Test2 {
 
 
         box.doSkins();
+        for(Node n : box.children()) {
+            if(n instanceof Control) {
+                ((Control)n).doSkins();
+            }
+        }
         box.doPrefLayout();
         box.setWidth(500);
         box.setHeight(500);
