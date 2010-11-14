@@ -45,6 +45,11 @@
            <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
            <arg value="out.txt"/>
         </java>
+        <java classname="org.joshy.gfx.perftests.MailTest">
+           <classpath><pathelement path="build"/></classpath>
+           <classpath><fileset dir="repo/build/jars"><include name="*.jar"/></fileset></classpath>
+           <arg value="out.txt"/>
+        </java>
     </target>
     
 
